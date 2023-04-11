@@ -46,7 +46,7 @@ function game() {
     let ComputerWins = 0
     let computerChoice = ""
     let playerChoice = ""
-    let result = ""
+    let result = 0
     for (let gamesPlayed = 0; gamesPlayed < 5; gamesPlayed++) {
         computerChoice = getComputerChoice();
         playerChoice = prompt('Your choice: ').toLowerCase();
@@ -68,4 +68,5 @@ function game() {
     }
 }
 
-game();
+const button = document.querySelector("button");
+button.addEventListener("click", game)
