@@ -1,5 +1,5 @@
 function getComputerChoice() {
-    //generate a random integer from 0 to 2
+    // Generate a random integer from 0 to 2
     let guess = Math.floor(Math.random() * 3);
     if (guess == 0) {
         return "rock"
@@ -11,7 +11,7 @@ function getComputerChoice() {
 }
 
 function playRound (playerChoice, computerChoice) {
-    //rock>scissors, paper>rock, scissors>paper
+    // rock>scissors, paper>rock, scissors>paper
     if (playerChoice == computerChoice) {
         return 0 // Tie
     } else if (playerChoice == "scissors") {
@@ -43,28 +43,31 @@ function playRound (playerChoice, computerChoice) {
 
 function game() {
     let playerWins = 0
-    let ComputerWins = 0
+    let computerWins = 0
+
     let computerChoice = ""
     let playerChoice = ""
+
     let result = 0
-    for (let gamesPlayed = 0; gamesPlayed < 5; gamesPlayed++) {
+    
+    while (playerWins < 3 && computerWins < 3) {
         computerChoice = getComputerChoice();
         playerChoice = prompt('Your choice: ').toLowerCase();
         result = playRound(playerChoice, computerChoice);
         if (result == 1) {
             playerWins++
+            console.log(`CPU: ${computerWins} PLAYER: ${playerWins}`)
         } else if (result == 2) {
-            ComputerWins++
+            computerWins++
+            console.log(`CPU: ${computerWins} PLAYER: ${playerWins}`)
         } else {
             console.log("Tie.")
         }
     }
-    if (playerWins > ComputerWins) {
-        console.log(`Player Wins ${playerWins} to ${ComputerWins}!`)
-    } else if (playerWins < ComputerWins) {
-        console.log(`Computer Wins ${ComputerWins} to ${playerWins}!`)
-    } else {
-        console.log(`Game tied ${playerWins} to ${ComputerWins}.`)
+    if (playerWins > computerWins) {
+        console.log(`Player Wins ${playerWins} to ${computerWins}!`)
+    } else if (playerWins < computerWins) {
+        console.log(`Computer Wins ${computerWins} to ${playerWins}!`)
     }
 }
 
