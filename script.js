@@ -8,19 +8,19 @@ let currentRound = 1
 
 const scissorsbtn = document.getElementById('scissorsbtn');
 scissorsbtn.addEventListener('click', function() {
-    playerChoice = "scissors"
+    playerChoice = 0
     computerChoice = getComputerChoice()
     playRound(playerChoice, computerChoice)
 });
 const paperbtn = document.getElementById('paperbtn');
 paperbtn.addEventListener('click', function() {
-    playerChoice = "paper"
+    playerChoice = 1
     computerChoice = getComputerChoice()
     playRound(playerChoice, computerChoice)
 });
 const rockbtn = document.getElementById('rockbtn');
 rockbtn.addEventListener('click', function() {
-    playerChoice = "rock"
+    playerChoice = 2
     computerChoice = getComputerChoice()
     playRound(playerChoice, computerChoice)
 });
@@ -32,7 +32,20 @@ const roundText = document.getElementById('roundText');
 
 function incrementRound() {
     currentRound++
-    roundText.textContent = "Round " + currentRound
+    if (currentRound > 5) {
+        if (playerWins > computerWins) {
+            infoText.textContent = "You win the game!"
+            document.getElementById("scissorsbtn").disabled = true;
+            document.getElementById("paperbtn").disabled = true;
+            document.getElementById("rockbtn").disabled = true;
+        }
+        else if (playerWins < computerWins) {
+            infoText.textContent = "You lose the game!"
+            document.getElementById("scissorsbtn").disabled = true;
+            document.getElementById("paperbtn").disabled = true;
+            document.getElementById("rockbtn").disabled = true;
+        }
+    } else { roundText.textContent = "Round " + currentRound + " of 5" }
 }
 
 function incrementScore(winner) {
@@ -82,20 +95,5 @@ function playRound (playerChoice, computerChoice) {
     } else if (playerChoice == 2 && computerChoice == 1) {
         infoText.textContent = "You lose! Paper beats rock."
         incrementScore("cpu")
-    }
-
-    if (currentRound == 5) {
-        if (playerWins > computerWins) {
-            infoText.textContent = "You win the game!"
-            document.getElementById("scissorsbtn").disabled = true;
-            document.getElementById("paperbtn").disabled = true;
-            document.getElementById("rockbtn").disabled = true;
-        }
-        else if (playerWins < computerWins) {
-            infoText.textContent = "You lose the game!"
-            document.getElementById("scissorsbtn").disabled = true;
-            document.getElementById("paperbtn").disabled = true;
-            document.getElementById("rockbtn").disabled = true;
-        }
     }
 }
