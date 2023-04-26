@@ -1,75 +1,101 @@
+let playerWins = 0
+let computerWins = 0
+
+let computerChoice = ""
+let playerChoice = ""
+
+let currentRound = 1
+
+const scissorsbtn = document.getElementById('scissorsbtn');
+scissorsbtn.addEventListener('click', function() {
+    playerChoice = "scissors"
+    computerChoice = getComputerChoice()
+    playRound(playerChoice, computerChoice)
+});
+const paperbtn = document.getElementById('paperbtn');
+paperbtn.addEventListener('click', function() {
+    playerChoice = "paper"
+    computerChoice = getComputerChoice()
+    playRound(playerChoice, computerChoice)
+});
+const rockbtn = document.getElementById('rockbtn');
+rockbtn.addEventListener('click', function() {
+    playerChoice = "rock"
+    computerChoice = getComputerChoice()
+    playRound(playerChoice, computerChoice)
+});
+
+const playerScore = document.getElementById('playerScore');
+const computerScore = document.getElementById('computerScore');
+const infoText = document.getElementById('infoText');
+const roundText = document.getElementById('roundText');
+
+function incrementRound() {
+    currentRound++
+    roundText.textContent = "Round " + currentRound
+}
+
+function incrementScore(winner) {
+    if (winner == "player") {
+        playerWins++
+        playerScore.textContent = playerWins
+    } else if (winner == "cpu") {
+        computerWins++
+        computerScore.textContent = computerWins
+    }
+    incrementRound()
+}
+
 function getComputerChoice() {
     // Generate a random integer from 0 to 2
+    // scissors = 0, paper = 1, rock = 2
     let guess = Math.floor(Math.random() * 3);
     if (guess == 0) {
-        return "rock"
+        return 0
     } else if (guess == 1) {
-        return "paper"
+        return 1
     } else if (guess == 2) {
-        return "scissors"
+        return 2
     }
 }
 
 function playRound (playerChoice, computerChoice) {
-    // rock>scissors, paper>rock, scissors>paper
-    if (playerChoice == computerChoice) {
-        return 0 // Tie
-    } else if (playerChoice == "scissors") {
-        if (computerChoice == "paper") {
-            console.log("Victory! Scissors beat paper.")
-            return 1 // Win
-        } else {
-            console.log("Defeat. Rock beat scissors.")
-            return 2 // Loss
+    // scissors > paper > rock > scissors
+    // scissors = 0, paper = 1, rock = 2
+    if (playerChoice ==  computerChoice) {
+        infoText.textContent = "It's a tie!"
+    } else if (playerChoice == 0 && computerChoice == 1) {
+        infoText.textContent = "You win! Scissors beats paper."
+        incrementScore("player")
+    } else if (playerChoice == 0 && computerChoice == 2) {
+        infoText.textContent = "You lose! Rock beats scissors."
+        incrementScore("cpu")
+    } else if (playerChoice == 1 && computerChoice == 0) {
+        infoText.textContent = "You lose! Scissors beats paper."
+        incrementScore("cpu")
+    } else if (playerChoice == 1 && computerChoice == 2) {
+        infoText.textContent = "You win! Paper beats rock."
+        incrementScore("player")
+    } else if (playerChoice == 2 && computerChoice == 0) {
+        infoText.textContent = "You win! Rock beats scissors."
+        incrementScore("player")
+    } else if (playerChoice == 2 && computerChoice == 1) {
+        infoText.textContent = "You lose! Paper beats rock."
+        incrementScore("cpu")
+    }
+
+    if (currentRound == 5) {
+        if (playerWins > computerWins) {
+            infoText.textContent = "You win the game!"
+            document.getElementById("scissorsbtn").disabled = true;
+            document.getElementById("paperbtn").disabled = true;
+            document.getElementById("rockbtn").disabled = true;
         }
-    } else if (playerChoice == "paper") {
-        if (computerChoice == "rock") {
-            console.log("Victory! Paper beat rock.")
-            return 1
-        } else {
-            console.log("Defeat. Scissors beat paper.")
-            return 2
-        }
-    } else if (playerChoice == "rock") {
-        if (computerChoice == "scissors") {
-            console.log("Victory! Rock beat scissors.")
-            return 1
-        } else {
-            console.log("Defeat. Paper beat rock.")
-            return 2
+        else if (playerWins < computerWins) {
+            infoText.textContent = "You lose the game!"
+            document.getElementById("scissorsbtn").disabled = true;
+            document.getElementById("paperbtn").disabled = true;
+            document.getElementById("rockbtn").disabled = true;
         }
     }
 }
-
-function game() {
-    let playerWins = 0
-    let computerWins = 0
-
-    let computerChoice = ""
-    let playerChoice = ""
-
-    let result = 0
-    
-    while (playerWins < 3 && computerWins < 3) {
-        computerChoice = getComputerChoice();
-        playerChoice = prompt('Your choice: ').toLowerCase();
-        result = playRound(playerChoice, computerChoice);
-        if (result == 1) {
-            playerWins++
-            console.log(`CPU: ${computerWins} PLAYER: ${playerWins}`)
-        } else if (result == 2) {
-            computerWins++
-            console.log(`CPU: ${computerWins} PLAYER: ${playerWins}`)
-        } else {
-            console.log("Tie.")
-        }
-    }
-    if (playerWins > computerWins) {
-        console.log(`Player Wins ${playerWins} to ${computerWins}!`)
-    } else if (playerWins < computerWins) {
-        console.log(`Computer Wins ${computerWins} to ${playerWins}!`)
-    }
-}
-
-const button = document.querySelector("button");
-button.addEventListener("click", game)

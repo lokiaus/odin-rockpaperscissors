@@ -1,16 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }   
+        .dark-mode {
+            background-color: black;
+            color: white;
+        }
+        #dark-mode-toggle {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 1rem;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 0.25rem;
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scissors Paper Rock</title>
 </head>
-<body style="background-color: black; color: white;">
-    <h1>Scissors Paper Rock</h1>
-    <p>A best to five game of Scissors Paper Rock against the computer.</p>
+<body>
+    <div class="header-container">
+        <!-- a header with the title and a dark mode toggle button-->
+        <h1>Scissors Paper Rock</h1>
+        <button type="button" class="dark-mode-toggle" id="dark-mode-toggle">Dark Mode</button>
+    </div>
+    <p>A best to fve game of Scissors Paper Rock against the computer.</p>
     <p>Open the developer console with F12 to play.</p>
-    <button type="button" class="button">Start Game</button>
+    <div class="btns-cont">
+        <button type="button" class="btns" id="scissorsbtn">Scissors</button>
+        <button type="button" class="btns" id="paperbtn">Paper</button>
+        <button type="button" class="btns" id="rockbtn">Rock</button>
+    </div>
+    <div class="scoreCont">
+        <p id="roundText">Round: 1</p>
+        <p>Player Score</p>
+        <p id="playerScore">0</p>
+        <p>Computer Score</p>
+        <p id="computerScore">0</p>
+        <p id="infoText"></p>
+    </div>
     <script src="script.js"></script>
+    <script>
+        // toggle dark mode using the button element by changing the class of the body element
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+        });
+    </script>
 </body>
 </html>
