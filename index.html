@@ -6,6 +6,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            text-align: center;
         }   
         .dark-mode {
             background-color: black;
@@ -35,20 +36,21 @@
         <h1>Scissors Paper Rock</h1>
         <button type="button" class="dark-mode-toggle" id="dark-mode-toggle">Dark Mode</button>
     </div>
-    <p>A best to fve game of Scissors Paper Rock against the computer.</p>
-    <p>Open the developer console with F12 to play.</p>
+    <p>A best of five game of Scissors Paper Rock against the computer.</p>
     <div class="btns-cont">
         <button type="button" class="btns" id="scissorsbtn">Scissors</button>
         <button type="button" class="btns" id="paperbtn">Paper</button>
         <button type="button" class="btns" id="rockbtn">Rock</button>
     </div>
-    <div class="scoreCont">
-        <p id="roundText">Round: 1</p>
+    <div id="scoreCont">
+        <p id="roundText">Round: 1 of 5</p>
         <p>Player Score</p>
         <p id="playerScore">0</p>
         <p>Computer Score</p>
         <p id="computerScore">0</p>
         <p id="infoText"></p>
+        <p id="winnerText"></p>
+        <button type="button" class="btns" id="resetbtn" disabled>Reset</button>
     </div>
     <script src="script.js"></script>
     <script>

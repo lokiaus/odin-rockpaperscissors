@@ -29,23 +29,25 @@ const playerScore = document.getElementById('playerScore');
 const computerScore = document.getElementById('computerScore');
 const infoText = document.getElementById('infoText');
 const roundText = document.getElementById('roundText');
+const scoreCont = document.querySelector('scoreCont');
+const winnerText = document.getElementById('winnerText');
+const resetbtn = document.getElementById('resetbtn');
 
-function incrementRound() {
-    currentRound++
-    if (currentRound > 5) {
-        if (playerWins > computerWins) {
-            infoText.textContent = "You win the game!"
-            document.getElementById("scissorsbtn").disabled = true;
-            document.getElementById("paperbtn").disabled = true;
-            document.getElementById("rockbtn").disabled = true;
-        }
-        else if (playerWins < computerWins) {
-            infoText.textContent = "You lose the game!"
-            document.getElementById("scissorsbtn").disabled = true;
-            document.getElementById("paperbtn").disabled = true;
-            document.getElementById("rockbtn").disabled = true;
-        }
-    } else { roundText.textContent = "Round " + currentRound + " of 5" }
+function endGame(playerScore, computerScore) {
+    if (playerScore > computerScore) {
+        winnerText.textContent = `You won the game ${playerScore} to ${computerScore}!`
+        document.getElementById("scissorsbtn").disabled = true;
+        document.getElementById("paperbtn").disabled = true;
+        document.getElementById("rockbtn").disabled = true;
+        document.getElementById("resetbtn").disabled = false;
+    }
+    else if (playerScore < computerScore) {
+        winnerText.textContent = `You lost the game ${playerScore} to ${computerScore}!`
+        document.getElementById("scissorsbtn").disabled = true;
+        document.getElementById("paperbtn").disabled = true;
+        document.getElementById("rockbtn").disabled = true;
+        document.getElementById("resetbtn").disabled = false;
+    }
 }
 
 function incrementScore(winner) {
@@ -56,7 +58,13 @@ function incrementScore(winner) {
         computerWins++
         computerScore.textContent = computerWins
     }
-    incrementRound()
+
+    if (playerWins > 2 || computerWins > 2) {
+        endGame(playerWins, computerWins)
+    } else {
+        roundText.textContent = "Round " + currentRound + " of 5"
+        currentRound++
+    }
 }
 
 function getComputerChoice() {
@@ -71,6 +79,7 @@ function getComputerChoice() {
         return 2
     }
 }
+
 
 function playRound (playerChoice, computerChoice) {
     // scissors > paper > rock > scissors
@@ -97,3 +106,23 @@ function playRound (playerChoice, computerChoice) {
         incrementScore("cpu")
     }
 }
+
+function resetGame() {
+    playerWins = 0
+    computerWins = 0
+    currentRound = 1
+    playerScore.textContent = playerWins
+    computerScore.textContent = computerWins
+    infoText.textContent = "Choose your weapon!"
+    roundText.textContent = "Round " + currentRound + " of 5"
+    winnerText.textContent = ""
+    document.getElementById("scissorsbtn").disabled = false;
+    document.getElementById("paperbtn").disabled = false;
+    document.getElementById("rockbtn").disabled = false;
+    document.getElementById("resetbtn").disabled = true;
+}
+
+// resets game
+resetbtn.addEventListener('click', function() {
+    resetGame()
+});
