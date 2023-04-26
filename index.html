@@ -1,30 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }   
-        .dark-mode {
-            background-color: black;
-            color: white;
-        }
-        #dark-mode-toggle {
-            position: absolute;
-            top: 0;
-            right: 0;
-            margin: 1rem;
-            padding: 0.5rem;
-            border: none;
-            border-radius: 0.25rem;
-            background-color: #333;
-            color: white;
-            cursor: pointer;
-        }
-    </style>
+    <link href="styles.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,14 +21,24 @@
     </div>
     <div id="scoreCont">
         <p id="roundText">Round: 1 of 5</p>
-        <p>Player Score</p>
-        <p id="playerScore">0</p>
-        <p>Computer Score</p>
-        <p id="computerScore">0</p>
+        <div class="scoreCont">
+            <div class="playerScoreCont">
+                <p>Player Score</p>
+                <p id="playerScore">0</p>
+            </div>
+            <div class="cpuScoreCont">
+                <p>Computer Score</p>
+                <p id="computerScore">0</p>
+            </div>
+        </div>
         <p id="infoText">Choose your weapon!</p>
         <p id="winnerText"></p>
         <button type="button" class="btns" id="resetbtn" disabled>Reset</button>
     </div>
+    <footer>
+        <p class="footerItem"><a href="https://www.theodinproject.com/">The Odin Project</a></p>
+        <p class="footerItem">Created by <a href="https://github.com/lokiaus">lokiaus</a></p>
+    </footer>
     <script src="script.js"></script>
     <script>
         // toggle dark mode using the button element by changing the class of the body element
