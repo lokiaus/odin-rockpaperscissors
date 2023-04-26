@@ -62,8 +62,8 @@ function incrementScore(winner) {
     if (playerWins > 2 || computerWins > 2) {
         endGame(playerWins, computerWins)
     } else {
-        roundText.textContent = "Round " + currentRound + " of 5"
         currentRound++
+        roundText.textContent = "Round " + currentRound + " of 5"
     }
 }
 
