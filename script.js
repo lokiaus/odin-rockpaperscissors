@@ -33,6 +33,14 @@ const scoreCont = document.querySelector('scoreCont');
 const winnerText = document.getElementById('winnerText');
 const resetbtn = document.getElementById('resetbtn');
 
+const roundsBar = document.getElementById('roundsBar');
+function addRoundChild(outcome) {
+    let round = document.createElement("div");
+    round.classList.add("round");
+    round.classList.add(outcome);
+    roundsBar.appendChild(round);
+}
+
 function endGame(playerScore, computerScore) {
     if (playerScore > computerScore) {
         winnerText.textContent = `You won the game ${playerScore} to ${computerScore}!`
@@ -87,32 +95,52 @@ function playRound (playerChoice, computerChoice) {
     // scissors > paper > rock > scissors
     // scissors = 0, paper = 1, rock = 2
     if (playerChoice ==  computerChoice) {
-        infoText.style.color = "white"
         infoText.textContent = "It's a tie!"
+        updateInfoText("tie")
+        addRoundChild("gameIsTied")
     } else if (playerChoice == 0 && computerChoice == 1) {
-        infoText.style.color = "lightgreen"
         infoText.textContent = "You win! Scissors beats paper."
+        updateInfoText("player")
+        addRoundChild("playerIsWinner")
         incrementScore("player")
     } else if (playerChoice == 0 && computerChoice == 2) {
-        infoText.style.color = "red"
         infoText.textContent = "You lose! Rock beats scissors."
+        updateInfoText("cpu")
+        addRoundChild("cpuIsWinner")
         incrementScore("cpu")
     } else if (playerChoice == 1 && computerChoice == 0) {
-        infoText.style.color = "red"
         infoText.textContent = "You lose! Scissors beats paper."
+        updateInfoText("cpu")
+        addRoundChild("cpuIsWinner")
         incrementScore("cpu")
     } else if (playerChoice == 1 && computerChoice == 2) {
-        infoText.style.color = "lightgreen"
         infoText.textContent = "You win! Paper beats rock."
+        updateInfoText("player")
+        addRoundChild("playerIsWinner")
         incrementScore("player")
     } else if (playerChoice == 2 && computerChoice == 0) {
-        infoText.style.color = "lightgreen"
         infoText.textContent = "You win! Rock beats scissors."
+        updateInfoText("player")
+        addRoundChild("playerIsWinner")
         incrementScore("player")
     } else if (playerChoice == 2 && computerChoice == 1) {
-        infoText.style.color = "red"
         infoText.textContent = "You lose! Paper beats rock."
+        updateInfoText("cpu")
+        addRoundChild("cpuIsWinner")
         incrementScore("cpu")
+    }
+}
+
+function updateInfoText(outcome) {
+    if (outcome == "player") {
+        infoText.style.color = "lightgreen"
+        infoText.style.borderColor = "green"
+    } else if (outcome == "cpu") {
+        infoText.style.color = "pink"
+        infoText.style.borderColor = "red"
+    } else if (outcome == "tie") {
+        infoText.style.color = "white"
+        infoText.style.borderColor = "lightgray"
     }
 }
 
@@ -123,7 +151,9 @@ function resetGame() {
     playerScore.textContent = playerWins
     computerScore.textContent = computerWins
     infoText.style.color = "white"
+    infoText.style.borderColor = "lightgray"
     infoText.textContent = "Choose your weapon!"
+    roundsBar.innerHTML = ""
     roundText.textContent = "Round " + currentRound + " of 5"
     winnerText.textContent = ""
     scissorsbtn.style.scale = 1;

@@ -38,9 +38,44 @@ button {
 }
 
 #infoText {
-    background-color: rgb(102, 102, 102);
+    background-color: #333;
     color: white;
     padding: 10px;
+    /* center in div */
+    width: fit-content;
+    margin: 10px auto;
+    border-color: lightgray;
+    border-style: solid;
+    border-width: 4px;
+    /* round corners */
+    border-radius: 10px;
+}
+
+#roundsBar {
+    display: flex;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+}
+
+.gameIsTied,
+.playerIsWinner,
+.cpuIsWinner {
+    width: 10px;
+    height: 10px;
+}
+
+.gameIsTied {
+    background-color: rgb(102, 102, 102);
+}
+
+.playerIsWinner {
+    background-color: rgb(0, 153, 0);
+}
+
+.cpuIsWinner {
+    background-color: rgb(255, 0, 0);
 }
 
 footer {
@@ -51,12 +86,16 @@ footer {
     width: 100%;
     color: black;
     background-color: #999;
-    opacity: 0.7;
+    opacity: 0.85;
 }
 
 .footerItem {
     margin: 0;
     padding: 12px;
+}
+
+a:visited {
+    color: rgb(245, 231, 255);
 }
 
 .dark-mode {
