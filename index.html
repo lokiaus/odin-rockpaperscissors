@@ -11,7 +11,7 @@
     <div class="header-container">
         <!-- a header with the title and a dark mode toggle button-->
         <h1>Scissors Paper Rock</h1>
-        <button type="button" class="dark-mode-toggle" id="dark-mode-toggle">Dark Mode</button>
+        <button type="button" class="dark-mode-toggle btns" id="dark-mode-toggle">Dark Mode</button>
     </div>
     <p>A best of five game of Scissors Paper Rock against the computer.</p>
     <div class="btns-cont">
@@ -20,7 +20,7 @@
         <button type="button" class="btns" id="rockbtn">Rock</button>
     </div>
     <div id="scoreCont">
-        <p id="roundText">Round: 1 of 5</p>
+        <p id="roundText">Round 1 of 5</p>
         <div class="scoreCont">
             <div class="playerScoreCont">
                 <p>Player Score</p>
@@ -47,6 +47,18 @@
         darkModeToggle.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
         });
+
+        // scale button by 1.1 for .1s when clicked
+        const btns = document.querySelectorAll('.btns');
+        btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    btn.style.transform = 'scale(1)';
+                }, 100);
+            });
+        });
+
     </script>
 </body>
 </html>
