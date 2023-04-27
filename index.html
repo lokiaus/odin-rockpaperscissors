@@ -14,26 +14,26 @@
         <button type="button" class="dark-mode-toggle btns" id="dark-mode-toggle">Dark Mode</button>
     </div>
     <p>A best of five game of Scissors Paper Rock against the computer.</p>
-    <div class="btns-cont">
-        <button type="button" class="btns" id="scissorsbtn">Scissors</button>
-        <button type="button" class="btns" id="paperbtn">Paper</button>
-        <button type="button" class="btns" id="rockbtn">Rock</button>
-    </div>
     <div id="scoreCont">
         <p id="roundText">Round 1 of 5</p>
         <div class="scoreCont">
-            <div class="playerScoreCont">
+            <div id="playerScoreCont">
                 <p>Player Score</p>
                 <p id="playerScore">0</p>
             </div>
-            <div class="cpuScoreCont">
+            <div id="cpuScoreCont">
                 <p>Computer Score</p>
                 <p id="computerScore">0</p>
             </div>
         </div>
+        <div class="btns-cont">
+            <button type="button" class="btns" id="scissorsbtn">Scissors</button>
+            <button type="button" class="btns" id="paperbtn">Paper</button>
+            <button type="button" class="btns" id="rockbtn">Rock</button>
+        </div>
         <p id="infoText">Choose your weapon!</p>
         <p id="winnerText"></p>
-        <button type="button" class="btns" id="resetbtn" disabled>Reset</button>
+        <button type="button" class="btns" id="resetbtn" style="scale:0">Reset</button>
     </div>
     <footer>
         <p class="footerItem"><a href="https://www.theodinproject.com/">The Odin Project</a></p>
@@ -56,6 +56,20 @@
                 setTimeout(() => {
                     btn.style.transform = 'scale(1)';
                 }, 100);
+            });
+        });
+
+        // disable all buttons for .25s when any are clicked
+        btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btns.forEach(btn => {
+                    btn.disabled = true;
+                });
+                setTimeout(() => {
+                    btns.forEach(btn => {
+                        btn.disabled = false;
+                    });
+                }, 250);
             });
         });
 

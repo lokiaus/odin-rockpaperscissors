@@ -18,12 +18,6 @@ button {
     cursor: pointer;
 }
 
-button:disabled {
-    background-color: #999;
-    color: #333;
-    cursor: not-allowed;
-}
-
 .scoreCont {
     display: flex;
     align-items: center;
@@ -33,14 +27,20 @@ button:disabled {
     padding: 0;
 }
 
-.playerScoreCont,
-.cpuScoreCont {
+#playerScoreCont,
+#cpuScoreCont {
     padding: 0;
     margin: 20px;
     width: 150px;
     border-style: solid;
     border-color: rgb(102, 102, 102);
     border-width: 4px;
+}
+
+#infoText {
+    background-color: rgb(102, 102, 102);
+    color: white;
+    padding: 10px;
 }
 
 footer {
