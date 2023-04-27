@@ -41,6 +41,11 @@ function addRoundChild(outcome) {
     roundsBar.appendChild(round);
 }
 
+const plrWinsText = document.getElementById('plrWinsText');
+const cpuWinsText = document.getElementById('cpuWinsText');
+let plrVictories = 0;
+let cpuVictories = 0;
+
 function endGame(playerScore, computerScore) {
     if (playerScore > computerScore) {
         winnerText.textContent = `You won the game ${playerScore} to ${computerScore}!`
@@ -49,6 +54,8 @@ function endGame(playerScore, computerScore) {
         rockbtn.style.scale = 0;
         resetbtn.style.scale = 1;
         document.getElementById("playerScoreCont").style.borderColor = "lightgreen";
+        plrVictories++;
+        plrWinsText.textContent = "Player Wins: " + plrVictories;
     }
     else if (playerScore < computerScore) {
         winnerText.textContent = `You lost the game ${playerScore} to ${computerScore}!`
@@ -57,6 +64,8 @@ function endGame(playerScore, computerScore) {
         rockbtn.style.scale = 0;
         resetbtn.style.scale = 1;
         document.getElementById("cpuScoreCont").style.borderColor = "lightgreen";
+        cpuVictories++;
+        cpuWinsText.textContent = "Computer Wins: " + cpuVictories;
 
     }
 }

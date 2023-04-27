@@ -84,14 +84,12 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    color: black;
-    background-color: #999;
-    opacity: 0.85;
+    background-color: rgba(169, 169, 169, 0.641);
 }
 
 .footerItem {
     margin: 0;
-    padding: 12px;
+    padding: 8px;
 }
 
 a:visited {
