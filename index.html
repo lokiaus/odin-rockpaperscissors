@@ -8,11 +8,11 @@
     <title>Scissors Paper Rock</title>
 </head>
 <body>
-    <div class="header-container">
+    <header>
         <!-- a header with the title and a dark mode toggle button-->
-        <h1>Scissors Paper Rock</h1>
-        <button type="button" class="dark-mode-toggle btns" id="dark-mode-toggle">Dark Mode</button>
-    </div>
+        <h1 class="header-item">Scissors Paper Rock</h1>
+        <button type="button" class="dark-mode-toggle btns header-item" id="dark-mode-toggle">Dark Mode</button>
+    </header>
     <p>A best of five game of Scissors Paper Rock against the computer</p>
     <div id="scoreCont">
         <p id="roundText">Round 1 of 5</p>
@@ -36,6 +36,7 @@
         <p id="winnerText"></p>
         <button type="button" class="btns" id="resetbtn" style="scale:0">Reset</button>
     </div>
+    <p><button type="button" class="btns" id="rstHistory">Reset History</button></p>
     <footer>
         <p class="footerItem"><a href="https://www.theodinproject.com/">The Odin Project</a></p>
         <p class="footerItem" id="plrWinsText">Player Wins: 0</p>

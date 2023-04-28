@@ -68,10 +68,10 @@ function resetScore() {
     cpuWinsText.textContent = "Computer Wins: " + cpuVictories;
 }
 
-if (localStorage.getItem("plrVictories") === null) {
-    resetScore();
-} else {
+if (localStorage.getItem("plrVictories") !== null || localStorage.getItem("cpuVictories") !== null) {
     getScore();
+} else {
+    resetScore();
 }
 
 if (localStorage.getItem("cpuVictories") === null) {
@@ -79,6 +79,15 @@ if (localStorage.getItem("cpuVictories") === null) {
 } else {
     getScore();
 }
+
+// when rstHistory button is pressed, prompt the user to confirm, then call resetScore()
+const rstHistory = document.getElementById('rstHistory');
+rstHistory.addEventListener('click', function() {
+    if (confirm("Are you sure you want to reset your history?")) {
+        resetScore();
+    }
+});
+
 
 function endGame(playerScore, computerScore) {
     if (playerScore > computerScore) {
