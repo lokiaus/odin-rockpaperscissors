@@ -43,8 +43,42 @@ function addRoundChild(outcome) {
 
 const plrWinsText = document.getElementById('plrWinsText');
 const cpuWinsText = document.getElementById('cpuWinsText');
-let plrVictories = 0;
-let cpuVictories = 0;
+
+// stores plrVictories and cpuVictories in local storage
+function storeScore() {
+    localStorage.setItem("plrVictories", plrVictories);
+    localStorage.setItem("cpuVictories", cpuVictories);
+}
+
+// retrieves plrVictories and cpuVictories from local storage
+function getScore() {
+    plrVictories = localStorage.getItem("plrVictories");
+    cpuVictories = localStorage.getItem("cpuVictories");
+    plrWinsText.textContent = "Player Wins: " + plrVictories;
+    cpuWinsText.textContent = "Computer Wins: " + cpuVictories;
+}
+
+// resets plsVictories and cpuVictories in local storage
+function resetScore() {
+    localStorage.setItem("plrVictories", 0);
+    localStorage.setItem("cpuVictories", 0);
+    plrVictories = 0;
+    cpuVictories = 0;
+    plrWinsText.textContent = "Player Wins: " + plrVictories;
+    cpuWinsText.textContent = "Computer Wins: " + cpuVictories;
+}
+
+if (localStorage.getItem("plrVictories") === null) {
+    resetScore();
+} else {
+    getScore();
+}
+
+if (localStorage.getItem("cpuVictories") === null) {
+    resetScore();
+} else {
+    getScore();
+}
 
 function endGame(playerScore, computerScore) {
     if (playerScore > computerScore) {
@@ -55,6 +89,7 @@ function endGame(playerScore, computerScore) {
         resetbtn.style.scale = 1;
         document.getElementById("playerScoreCont").style.borderColor = "lightgreen";
         plrVictories++;
+        storeScore();
         plrWinsText.textContent = "Player Wins: " + plrVictories;
     }
     else if (playerScore < computerScore) {
@@ -65,6 +100,7 @@ function endGame(playerScore, computerScore) {
         resetbtn.style.scale = 1;
         document.getElementById("cpuScoreCont").style.borderColor = "lightgreen";
         cpuVictories++;
+        storeScore();
         cpuWinsText.textContent = "Computer Wins: " + cpuVictories;
 
     }

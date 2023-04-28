@@ -44,12 +44,24 @@
     </footer>
     <script src="script.js"></script>
     <script>
+
         // toggle dark mode using the button element by changing the class of the body element
-        const darkModeToggle = document.getElementById('dark-mode-toggle');
-        const body = document.body;
+        // also saves dark mode state to local storage
+        const darkModeToggle = document.querySelector('#dark-mode-toggle');
+        const body = document.querySelector('body');
         darkModeToggle.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+            }
         });
+        
+        // check if dark mode is enabled in local storage and set it if it is
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.toggle('dark-mode');
+        }
 
         // scale button by 1.1 for .1s when clicked
         const btns = document.querySelectorAll('.btns');
